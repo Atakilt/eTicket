@@ -53,6 +53,9 @@ namespace eticket
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            //seed the database
+            AppDbInitializer.Seed(app);
         }
     }
 }
