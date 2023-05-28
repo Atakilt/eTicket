@@ -21,6 +21,13 @@ namespace eticket.Controllers
         {
             var actors =  await _service.GetAll();            
             return View(actors);
-        }        
+        }       
+
+        //Get: Actors/Create
+        [HttpGet("Create")]
+        public IActionResult Create()
+        {
+            return View();
+        }         
     }
 }
