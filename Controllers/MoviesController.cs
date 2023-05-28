@@ -24,14 +24,8 @@ namespace eticket.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var data = await _context.Movies.ToListAsync();
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View("Error!");
+            var movies = await _context.Movies.ToListAsync();
+            return View(movies);
         }
     }
 }
