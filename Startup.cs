@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using eticket.Data;
+using eticket.Data.Services;
 using Microsoft.EntityFrameworkCore;
 
 namespace eticket
@@ -23,6 +24,8 @@ namespace eticket
             // Add framework services.
             services.AddDbContext<AppDbContext>(options =>
                   options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
+            //Service configuration
+            services.AddScoped<IActorsService,ActorsService>();
 
             services.AddControllersWithViews();
         }
