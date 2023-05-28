@@ -2,26 +2,25 @@ using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using eticket.Data;
+using eticket.Data.Services;
+using System.Threading.Tasks;
 
 namespace eticket.Controllers
 {
     [Route("[controller]")]
     public class ActorsController : Controller
     {
-        private readonly ILogger<ActorsController> _logger;
-        private readonly AppDbContext _context;
+        private readonly IActorsService _service;
 
-        public ActorsController(AppDbContext context, ILogger<ActorsController> logger)
+        public ActorsController(IActorsService service)
         {
-            _context = context;
-            _logger = logger;
+            _service=service;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var data =  _context.Actors.ToList();   
-            
-            return View(data);
+            var actors =  await _service.GetAll();            
+            return View(actors);
         }        
     }
 }
